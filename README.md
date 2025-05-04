@@ -1,90 +1,165 @@
-🧭 Overview
-The main.dart file imports several modules necessary for defining game companies, developers, and games. The main() function creates instances of these classes and demonstrates sharing games among different companies.
 
-🔑 Key Components
-📦 Imports
-The following modules are imported:
+# 🎮 Game Management System – Dart Class Documentation
 
+This project models a **game management system** using Dart. It simulates the structure of a gaming company ecosystem where developers create games, companies manage them, and a central system coordinates everything including sharing and registering.
+
+---
+
+## 📁 File Structure
+
+```
+/modelsGame/
+│── Game.dart
+│── Game_Company.dart
+│── Game_Developer.dart
+main.dart
 System.dart
-Contains the System class which likely manages game-related functionalities.
+```
 
-Game.dart
-Defines the Game class, outlining the properties and behaviors of a game.
+---
 
-Game_Company.dart
-Contains the GameCompany class, representing a company involved in game development.
+## 📌 Overview
 
-Game_Developer.dart
-Defines the GameDeveloper class, detailing the attributes of game developers.
+This system supports:
+- Creating **game developers**
+- Creating and managing **games**
+- Managing **game companies**
+- **Sharing** games between companies
+- Central control via the `System` class
 
-🧠 Main Function
-The main() function is responsible for:
+---
 
-Creating a System instance named shop.
+## 📦 Class Breakdown
 
-Instantiating multiple GameDeveloper objects with their respective attributes.
+### 🧱 `Game` Class
 
-Creating various Game objects linked to developers.
+**File**: `modelsGame/Game.dart`
 
-Establishing GameCompany instances.
+Represents an individual video game.
 
-Demonstrating game sharing between companies using shareTheGame.
+#### Properties
+- `String name` — Name of the game.
+- `GameDeveloper dev` — Reference to the developer.
+- `int price` — Price of the game in USD.
+- `int age` — Minimum recommended player age.
+- `String GameGenra` — Game genre.
 
-🧑‍💻 Detailed Code Explanation
-👨‍💻 Game Developer Instances
-Five GameDeveloper instances are created:
+#### Methods
+```dart
+void showInfoAbtGame()
+```
+Prints game details (name, price, age, and developer).
 
-dev1: Alice Grey
-Specializes in puzzles, 4 years of experience, new developer.
+---
 
-dev2: Ben Fox
-RPG developer with 7 years of experience.
+### 👨‍💻 `GameDeveloper` Class
 
-dev3: Clara Night
-Focuses on horror games, 3 years of experience.
+**File**: `modelsGame/Game_Developer.dart`
 
-dev4: Derek Moon
-Develops shooter games, 10 years of experience, also a new developer.
+Represents a game developer and their background.
 
-dev5: Ella Sparks
-Specializes in adventure games, 6 years of experience.
+#### Properties
+- `String name` — Developer name.
+- `String role` — Specialization/genre.
+- `int years` — Years of experience.
+- `bool newDev` — Whether they’re a new developer.
 
-🎮 Game Instances
-Each game is associated with a developer:
+#### Methods
+```dart
+void showInfoAbtDev()
+```
+Prints developer bio including role and years of experience.
 
-game1: MazeMaster
-Puzzle game, $15, suitable for 7+ years.
+---
 
-game2: Legend of Ashen
-RPG, $40, for 16+ years.
+### 🏢 `GameCompany` Class
 
-game3: Whispers Below
-Horror game, $25, for 18+ years.
+**File**: `modelsGame/Game_Company.dart`
 
-game4: Bullet Rush
-Shooter, $35, for 17+ years.
+Represents a game company that owns and distributes games.
 
-game5: Jungle Quest
-Adventure game, $30, for 10+ years.
+#### Properties
+- `String name` — Company name.
+- `String location` — Where the company is based.
+- `List<Game> stack` — Games managed by the company.
 
-🏢 Game Company Instances
-Companies involved in game sharing:
+#### Methods
+```dart
+void showInfoAbtCompany()
+```
+Displays company name and location.
 
-company1: BrainStorm Games — USA
+```dart
+void AddGame(Game game)
+```
+Adds a game to the company’s collection.
 
-company2: Phoenix Interactive — UK
+```dart
+void displaystack()
+```
+Lists all games owned by the company.
 
-company3: ShadowWorks — Germany
+---
 
-company4: TriggerSoft — Canada
+### ⚙️ `System` Class
 
-company5: WonderPlay — Japan
+**File**: `System.dart`
 
-🔄 Game Sharing
-Using System.shareTheGame() method:
+Acts as the controller to manage developers, companies, and game sharing.
 
-game1 is shared with company3.
+#### Properties
+```dart
+List<GameCompany> _GameComp = [];
+List<GameDeveloper> _Dev = [];
+```
 
-game2 is also shared with company3 (divider printed between).
+#### Methods
 
-game3 is shared with company5.
+```dart
+void addCompany(GameCompany comp)
+```
+Adds a company to the system and prints confirmation.
+
+```dart
+void addDev(GameDeveloper dev)
+```
+Adds a developer. If it's their first time, gives a welcome message; otherwise, thanks them.
+
+```dart
+void shareTheGame(GameCompany company, Game game)
+```
+Shares a game with a company and prints current game stack.
+
+---
+
+## 🧪 Example Usage (in `main.dart`)
+
+```dart
+final system = System();
+
+final dev1 = GameDeveloper(name: 'Alice Grey', role: 'Puzzle', years: 4, newDev: true);
+final game1 = Game(name: 'MazeMaster', dev: dev1, price: 15, age: 7, GameGenra: 'Puzzle');
+final company1 = GameCompany(name: 'BrainStorm Games', location: 'USA');
+
+system.addDev(dev1);
+system.addCompany(company1);
+system.shareTheGame(company1, game1);
+```
+
+---
+
+## ✅ Notes
+
+- Class names and file names follow PascalCase naming convention.
+- Consider renaming `GameGenra` → `genre` for readability and consistency.
+- Add `toString()` methods for better logging and output formatting.
+- Use `dartdoc` for auto-generating rich HTML docs if desired.
+
+---
+
+## 💬 Contributing
+
+Feel free to fork the repo and suggest enhancements like:
+- Search/filter functions
+- Game removal
+- Company analytics
