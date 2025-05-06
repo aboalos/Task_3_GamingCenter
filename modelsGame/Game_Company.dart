@@ -22,6 +22,7 @@ class GameCompany {
   void displaystack(){
 for(var Game in stack) {
   Game.showInfoAbtGame();
+  print("-----------");
 }
   }
 } 

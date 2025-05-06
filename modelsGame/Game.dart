@@ -17,6 +17,7 @@ class Game {
   void showInfoAbtGame() {
     print("Game Name: $name");
     print("Developed by: ${dev.name}");
+    print("Genra: $GameGenra");
     print("Price: \$$price");
     print("Recommended Age: $age+");
   }

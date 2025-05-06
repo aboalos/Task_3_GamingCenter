@@ -24,18 +24,24 @@ void main() {
   var company4 = GameCompany(name: "TriggerSoft", location: "Canada"); 
   var company5 = GameCompany(name: "WonderPlay", location: "Japan"); 
 
-  // shop.addDev(dev1);
-  // shop.addDev(dev2);
-  // shop.addDev(dev3);
-  // shop.addDev(dev4);
-  // shop.addDev(dev5);
+  shop.addDev(dev1);
+  shop.addDev(dev2);
+  shop.addDev(dev3);
+  shop.addDev(dev4);
+  shop.addDev(dev5);
 
-  // shop.addCompany(company1);
+  shop.addCompany(company1);
 
    shop.shareTheGame(company3, game1);
-   print("-----------");
+  
    shop.shareTheGame(company3, game2);
 
-   shop.shareTheGame( company5, game3);
+   shop.shareTheGame(company3, game5);
+
+   shop.shareTheGame(company5, game3);
+
+   shop.Stack(company3);
+
+   shop.Stack(company5);
 
 }
